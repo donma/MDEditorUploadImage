@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8" />
+    <title>图片上传示例 - Editor.md examples</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/editormd.css" />
+    <link rel="shortcut icon" href="https://pandao.github.io/editor.md/favicon.ico" type="image/x-icon" />
+</head>
+<body>
+    <div id="layout" style="height: 2000px;background: #f6f6f6;">
+        <header>
+            <h1>圖片上傳範例 by ASPX</h1>
+            <p>Image upload example</p>
+        </header>
+        <div id="test-editormd">
+            <textarea style="display:none;">#### Settings
+
+```javascript
+{
+    imageUpload    : false,
+    imageFormats   : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+    imageUploadURL : "uploadimage.ashx",
+}
+```
+
+#### JSON data
+
+```json
+{
+    success : 0 | 1,           // 0 表示上傳失敗，1 表示上傳成功
+    message : "提示的信息，上傳成功或上傳失敗及錯誤信息等。",
+    url     : "圖片地址"        // 上傳成功時才返回
+}
+```
+
+> Source sample : https://github.com/pandao/editor.md
+</textarea>
+        </div>
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script src="editormd.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var testEditor = editormd("test-editormd", {
+                width: "90%",
+                height: 640,
+                markdown: "",
+                path: '../lib/',
+                //dialogLockScreen : false,   // 設置彈出層對話框不鎖屏，全局通用，默認為 true
+                //dialogShowMask : false,     // 設置彈出層對話框顯示透明遮罩層，全局通用，默認為 true
+                //dialogDraggable : false,    // 設置彈出層對話框不可拖動，全局通用，默認為 true
+                //dialogMaskOpacity : 0.4,    // 設置透明遮罩層的透明度，全局通用，默認值為 0.1
+                //dialogMaskBgColor : "#000", // 設置透明遮罩層的背景顏色，全局通用，默認為 #fff
+                imageUpload: true,
+                imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+                imageUploadURL: "uploadimage.ashx",
+
+
+                /*
+                 上傳的後台只需要返回一個 JSON 數據，結構如下：
+                 {
+                    success : 0 | 1,           // 0 表示上傳失敗，1 表示上傳成功
+                    message : "提示的信息，上傳成功或上傳失敗及錯誤信息等。",
+                    url     : "圖片地址"        // 上傳成功時才返回
+                 }
+                 */
+            });
+        });
+    </script>
+</body>
+</html>
